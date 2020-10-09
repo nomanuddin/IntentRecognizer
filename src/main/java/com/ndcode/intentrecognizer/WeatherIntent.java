@@ -34,10 +34,9 @@ public class WeatherIntent {
         OkHttpClient client = getOkHttpClient();
         Request request = getRequest(city);
 
-        ResponseBody responseBody = null;
         try {
             Response response = client.newCall(request).execute();
-            responseBody = response.body();
+            ResponseBody responseBody = response.body();
             var jsonData = Objects.requireNonNull(responseBody).string();
             JSONObject jsonObject = new JSONObject(jsonData);
             Map<String, Object> temperature = null;
@@ -49,9 +48,12 @@ public class WeatherIntent {
             if (jsonObject.has("weather")) {
                 weather = jsonObject.getJSONArray("weather").toList().toString();
             }
+
             System.out.println("City name: " + city);
             System.out.println("temp: " + Objects.requireNonNullElse(temperature, "Info regarding pressure is not available the moment"));
             System.out.println("weather: " + Objects.requireNonNullElse(weather, "Info regarding weather is not available the moment"));
+
+            response.body().close();
         } catch (IOException e) {
             e.printStackTrace();
         }
