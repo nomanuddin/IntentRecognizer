@@ -14,20 +14,21 @@ public class IntentApp {
 
         try {
             var question = questionReader.readLine();
+            var userIntent = "is not found";
             if (question.isEmpty()) {
                 System.out.println("You did not enter a question!");
             } else if (question.contains("weather")) {
-                //getWeather(String question)
+                IntentRecognizer intentRecognizer = new IntentRecognizer();
+                userIntent = intentRecognizer.getWeather(question);
             } else if (question.contains("free")) {
-                //checkCalendarForFreeSlot(String question)
+                IntentRecognizer intentRecognizer = new IntentRecognizer();
+                userIntent = intentRecognizer.checkCalendarForFreeSlot(question);
             } else if (question.contains("fact")) {
-                //getInterestingFact(String question)
-            } else {
-                System.out.println("Your question is: " + question);
-
-                System.out.println("Your desired intent cannot be recognize please try again.");
+                IntentRecognizer intentRecognizer = new IntentRecognizer();
+                userIntent = intentRecognizer.getInterestingFact(question);
             }
-
+            System.out.println("Your question is: " + question);
+            System.out.println("Your desired intent: " + userIntent);
 
         } catch (IOException e) {
             e.printStackTrace();
