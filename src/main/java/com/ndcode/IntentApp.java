@@ -27,9 +27,9 @@ public class IntentApp {
                 //reading question from terminal
                 var question = questionReader.readLine();
 
-                //TODO: Following if conditions can be extended switch statements
+                //TODO: Following if conditions can be extended to switch statements
                 //TODO: For using switch statements better option would be to
-                //TODO: develop a standard parsing/regex algo which can optimize the logic further
+                //TODO: develop a standard parsing/regex library which can optimize the logic further
                 if (question.isEmpty()) {
                     System.out.println("You did not enter a question!");
                 }
