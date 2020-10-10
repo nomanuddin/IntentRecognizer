@@ -18,9 +18,9 @@ public class WeatherIntent {
 
     static Logger logger = Logger.getLogger(WeatherIntent.class.getName());
 
-    //getWeather method controls the whole flow of getting weather info and publishing it
+    //printWeather method controls the whole flow of getting weather info and publishing it
     //using sub-methods
-    public void getWeather(String question) {
+    public void printWeather(String question) {
         String homeTown = "Karlsruhe";
 
         // parsing question to get city info (Default city is hometown)

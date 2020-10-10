@@ -38,7 +38,7 @@ public class IntentApp {
                 else if (question.contains("weather")
                 ) {
                     WeatherIntent weatherIntent = new WeatherIntent();
-                    weatherIntent.getWeather(question);
+                    weatherIntent.printWeather(question);
                 }
                 //if question contain free or appointment keywords then respective class is called
                 //for further processing
@@ -46,12 +46,12 @@ public class IntentApp {
                         || question.contains("appointment")
                 ) {
                     AppointmentIntent appointmentIntent = new AppointmentIntent();
-                    appointmentIntent.checkAppointment(question);
+                    appointmentIntent.printAndCheckAppointment(question);
                 }//if question contain fact keyword then respective class is called
                 //for further processing
                 else if (question.contains("fact")) {
                     FactIntent factIntent = new FactIntent();
-                    factIntent.getInterestingFact();
+                    factIntent.printInterestingFact();
                 } else System.out.println("Intent is not recognized please try again!");
 
             } catch (IOException e) {

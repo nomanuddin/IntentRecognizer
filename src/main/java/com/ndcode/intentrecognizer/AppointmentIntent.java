@@ -4,9 +4,9 @@ import java.util.Random;
 
 public class AppointmentIntent {
 
-    //checkAppointments using sub-methods of claas find the time
+    //printAndCheckAppointment using sub-methods of claas find the time
     //and day from given query and check display random output
-    public void checkAppointment(String question) {
+    public void printAndCheckAppointment(String question) {
         System.out.println("Intent: Check calendar");
 
         // parsing question for time slot and day

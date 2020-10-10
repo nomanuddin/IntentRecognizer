@@ -12,7 +12,7 @@ class AppointmentIntentTest {
     @Test
     void testCheckAppointment() {
         AppointmentIntent appointmentIntent = mock(AppointmentIntent.class);
-        doNothing().when(appointmentIntent).checkAppointment(question);
+        doNothing().when(appointmentIntent).printAndCheckAppointment(question);
     }
 
     @Test
