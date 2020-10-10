@@ -7,12 +7,15 @@ import com.ndcode.intentrecognizer.WeatherIntent;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.logging.Logger;
 
 public class IntentApp {
     /**
      * Application entry point.
      */
+    static Logger logger = Logger.getLogger(IntentApp.class.getName());
     public static void main(String[] args) {
+
         while (true) {
             BufferedReader questionReader = new BufferedReader(new InputStreamReader(System.in));
             System.out.print("Enter your desired question: ");
@@ -37,9 +40,8 @@ public class IntentApp {
                 } else System.out.println("Intent is not recognized please try again!");
 
             } catch (IOException e) {
-                e.printStackTrace();
+                logger.info("Error: Please contact administrator" + e.getMessage());
             }
-            System.out.println("");
             System.out.println("");
         }
     }
