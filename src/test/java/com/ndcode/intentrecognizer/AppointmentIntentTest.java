@@ -7,7 +7,6 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 
 class AppointmentIntentTest {
-
     String question = "Am I free at 13:00 PM tomorrow?";
 
     @Test
@@ -26,7 +25,7 @@ class AppointmentIntentTest {
     @Test
     void testGetDayFromQuestion() {
         AppointmentIntent appointmentIntent = new AppointmentIntent();
-        String slotFromQuestion = appointmentIntent.getDayFromQuestion("Am I free at 13:00 PM tomorrow?");
+        String slotFromQuestion = appointmentIntent.getDayFromQuestion(question);
         assertEquals(slotFromQuestion, "day");
     }
 }
