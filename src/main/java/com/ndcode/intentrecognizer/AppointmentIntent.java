@@ -20,13 +20,13 @@ public class AppointmentIntent {
     }
 
     // getting time from question
-    private String getSlotFromQuestion(String question) {
+    public String getSlotFromQuestion(String question) {
         //TODO: Logic for getting time from question
         return "timeSlot";
     }
 
     // getting day from question
-    private String getDayFromQuestion(String question) {
+    public String getDayFromQuestion(String question) {
         //TODO: Logic for getting day from question
         return "day";
     }
