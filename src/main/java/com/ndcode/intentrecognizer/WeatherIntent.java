@@ -18,20 +18,25 @@ public class WeatherIntent {
 
     static Logger logger = Logger.getLogger(WeatherIntent.class.getName());
 
+    //getWeather method controls the whole flow of getting weather info and publishing it
+    //using sub-methods
     public void getWeather(String question) {
         String homeTown = "Karlsruhe";
 
-        //Parsing question to get city info (Default city is hometown)
+        // parsing question to get city info (Default city is hometown)
         var city = getCity(question);
-        if (city.contentEquals("Not Found")) {
+
+        // check if city exist
+        if (!city.contentEquals("N/A")) {
+            System.out.println("Intent: Get Weather City");
+        } else {
             System.out.println("Intent: Get Weather");
             city = homeTown;
-        } else {
-            System.out.println("Intent: Get Weather City");
         }
         publishWeatherInfo(city);
     }
 
+    //prints weather info on console
     private void publishWeatherInfo(String city) {
         OkHttpClient client = getOkHttpClient();
         Request request = getRequest(city);
@@ -45,7 +50,9 @@ public class WeatherIntent {
             JSONObject jsonObject = new JSONObject(jsonData);
             Map<String, Object> temperature = null;
 
-            // pre-check if weather info exist
+            // pre-checks if weather info exists in the response
+            // implementation can be extended to a better form using
+            // swagger api or awm-openWeatherApi dependency
             if (jsonObject.has("main")) {
                 temperature = jsonObject.getJSONObject("main").toMap();
             }
@@ -63,11 +70,9 @@ public class WeatherIntent {
         } catch (IOException e) {
             logger.info("Error: Please contact administrator" + e.getMessage());
         }
-
-
     }
 
-    // creating request for fact api
+    //creating request for fact api
     private Request getRequest(String city) {
         String url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=a6009ffacdde9cb48ead344d6e6bd6b1";
         return new Request.Builder()
@@ -76,17 +81,20 @@ public class WeatherIntent {
                 .build();
     }
 
-
+    //creating http client
     private OkHttpClient getOkHttpClient() {
         return new OkHttpClient().newBuilder()
                 .build();
     }
 
-    // creating http client
+    //getting city from questioin
     private String getCity(String question) {
+
+        //Pattern for finding city info
+        //if city name is not extracted N/A is returned
         Pattern cityPattern = Pattern.compile("in (.*?) today");
         Matcher matcher = cityPattern.matcher(question);
 
-        return (matcher.find() ? matcher.group(1) : "Not Found");
+        return (matcher.find() ? matcher.group(1) : "N/A");
     }
 }

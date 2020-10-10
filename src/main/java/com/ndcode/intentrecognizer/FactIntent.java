@@ -14,6 +14,8 @@ public class FactIntent {
 
     static Logger logger = Logger.getLogger(FactIntent.class.getName());
 
+    //getInterestingFact method call sub-methods for calling fact api
+    //and displaying content after parsing response body.
     public void getInterestingFact() {
         OkHttpClient client = getOkHttpClient();
         Request request = getRequest();
