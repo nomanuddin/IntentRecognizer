@@ -20,12 +20,17 @@ public class IntentApp {
         while (true) {
             // defining reader for command line
             BufferedReader questionReader = new BufferedReader(new InputStreamReader(System.in));
-            System.out.print("Enter your desired question: ");
+            System.out.print("Enter your desired question or enter exit to close program : ");
 
             // getting user question and parsing it
             try {
                 //reading question from terminal
                 var question = questionReader.readLine();
+
+                //exit requested, terminating loop to exit program
+                if (question.toLowerCase().equals("exit")) {
+                    break;
+                }
 
                 //TODO: Following if conditions can be extended to switch statements
                 //TODO: For using switch statements better option would be to
@@ -33,6 +38,7 @@ public class IntentApp {
                 if (question.isEmpty()) {
                     System.out.println("You did not enter a question!");
                 }
+
                 //if question contain weather keyword then respective class is called
                 //for further processing
                 else if (question.contains("weather")
@@ -40,6 +46,7 @@ public class IntentApp {
                     WeatherIntent weatherIntent = new WeatherIntent();
                     weatherIntent.printWeather(question);
                 }
+
                 //if question contain free or appointment keywords then respective class is called
                 //for further processing
                 else if (question.contains("free")
@@ -49,6 +56,7 @@ public class IntentApp {
                     appointmentIntent.printAndCheckAppointment(question);
                 }//if question contain fact keyword then respective class is called
                 //for further processing
+
                 else if (question.contains("fact")) {
                     FactIntent factIntent = new FactIntent();
                     factIntent.printInterestingFact();
@@ -59,6 +67,8 @@ public class IntentApp {
             }
             System.out.println("");
         }
+        //exiting program
+        System.exit(0);
     }
 }
 

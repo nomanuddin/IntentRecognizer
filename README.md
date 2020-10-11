@@ -18,6 +18,7 @@ Intent recognition command-line application
 - Step 1: Keywords are checked in the string
 - Step 2: Respective class is instantiated, and the relative method is called
 - Step 3: Required intent and info is displayed
+- Step 4: EXIT/exit keyword entered as question breaks the loop and application is closed
 
 #### API's used:
 - Open weather api is used for getting weather info
